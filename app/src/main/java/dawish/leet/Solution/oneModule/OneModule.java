@@ -52,20 +52,21 @@ public class OneModule {
 
     /**
      * 求字符串中最长子序列长度
-     * @param s
-     * @return
-     */
-    public int lengthOfLongestSubstring2(String s) {
-
-
-
-        return 0;
-    }
-
-    /**
-     * 求字符串中最长子序列长度
      * 执行用时 :7 ms, 在所有 java 提交中击败了83.34%的用户
      * 内存消耗 :36.9 MB, 在所有 java 提交中击败了95.18%的用户
+     *
+     * string: xfdvdv
+     * length: 6
+     * sList 2: [x]
+     * sList 2: [x, f]
+     * sList 2: [x, f, d]
+     * sList 2: [x, f, d, v]
+     * sList 1: [v]
+     * sList 2: [v, d]
+     * sList 1: [d]
+     * sList 2: [d, v]
+     * lengthOfLongestSubstring: 4
+     *
      * @param s
      * @return
      */
