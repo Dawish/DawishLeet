@@ -1,5 +1,9 @@
 package dawish.leet.Solution.oneModule;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class OneModule {
 
     /**
@@ -43,8 +47,63 @@ public class OneModule {
         l2 = l2 != null ? l2.next : null;
         tempNode.next = add(l1, l2, carry);
 
-
         return tempNode;
+    }
+
+    /**
+     * 求字符串中最长子序列长度
+     * @param s
+     * @return
+     */
+    public int lengthOfLongestSubstring2(String s) {
+
+
+
+        return 0;
+    }
+
+    /**
+     * 求字符串中最长子序列长度
+     * 执行用时 :7 ms, 在所有 java 提交中击败了83.34%的用户
+     * 内存消耗 :36.9 MB, 在所有 java 提交中击败了95.18%的用户
+     * @param s
+     * @return
+     */
+    public int lengthOfLongestSubstring(String s) {
+
+        if(s == null || s.length() == 0){
+            return 0;
+        }
+
+        int length = s.length();
+        // 每一次for循环里面都是一个子序列
+        List<Character> sList = new ArrayList<>();
+        int maxLength = 0;
+
+        for(int i=0 ; i<length ; i++){
+            char currChar = s.charAt(i);
+
+            if(sList.contains(currChar)){
+                // 有重复的就移除上一个字符及其之前的
+                int extraBeginIndex = sList.indexOf(currChar);
+
+                // 此方法会严重增加耗时 不可用，下面的for循环更优
+                // sList = sList.subList(extraBeginIndex+1, sList.size());
+
+                // 类似滑动窗口
+                for (int i1 = 0; i1 <= extraBeginIndex; i1++) {
+                    sList.remove(0);
+                }
+            }
+
+            sList.add(currChar);
+            int currSize = sList.size();
+            if(currSize > maxLength){
+                // 保存最长的子序列的长度
+                maxLength = currSize;
+            }
+        }
+        return maxLength;
     }
 
 }
