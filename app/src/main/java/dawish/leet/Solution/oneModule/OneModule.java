@@ -109,7 +109,16 @@ public class OneModule {
 
     /**
      * 给定一个字符串 s，找到 s 中最长的回文子串。你可以假设 s 的最大长度为 1000。
-     * 回文子串 正反都是一样
+     * 回文子串 正反都是一样,示例如下：
+     * "" -> ""
+     * a -> a
+     * aa -> aa
+     * ab -> a
+     * aaa -> aaa
+     * acxca -> acxca
+     * tattarrattat -> tattarrattat
+     * accccx -> cccc
+     *
      * 执行用时 :2 ms, 在所有 Java 提交中击败了99.96%的用户
      * 内存消耗 :36.1 MB, 在所有 Java 提交中击败了91的用户
      * @param s
