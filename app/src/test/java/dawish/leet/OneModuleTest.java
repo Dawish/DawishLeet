@@ -24,5 +24,22 @@ public class OneModuleTest {
 
         System.out.println("lengthOfLongestSubstring: "+length);
 
+        String resultStr = oneModule.longestPalindrome("dgexegdxaxdxdffii");
+        System.out.println("longestPalindrome: "+resultStr);
     }
+
+    @Test
+    public void addition_two() {
+
+        OneModule oneModule = new OneModule();
+//        String str = "babadada";
+        String str = "tattarrattat";
+//        String str = "accca";
+
+        System.out.println("string: "+str);
+        String resultStr = oneModule.longestPalindrome(str);
+//        String resultStr = oneModule.longestPalindromeTest(str);
+        System.out.println("longestPalindrome: "+resultStr);
+    }
+
 }

@@ -107,4 +107,70 @@ public class OneModule {
         return maxLength;
     }
 
+    /**
+     * 给定一个字符串 s，找到 s 中最长的回文子串。你可以假设 s 的最大长度为 1000。
+     * 回文子串 正反都是一样
+     * 执行用时 :2 ms, 在所有 Java 提交中击败了99.96%的用户
+     * 内存消耗 :36.1 MB, 在所有 Java 提交中击败了91的用户
+     * @param s
+     * @return
+     */
+    public String longestPalindrome(String s) {
+
+        if(s == null){
+            return null;
+        }
+
+        if(s != null && s.length() <= 1){
+            return s;
+        }
+
+        char[] chars = s.toCharArray();
+        int sLength = chars.length;
+        int[] leftRightRange = new int[2];
+
+        for (int i = 0; i < sLength; i++) {
+            i = findLeftRightIndex(chars, i, leftRightRange);
+        }
+
+        return s.substring(leftRightRange[0], leftRightRange[1] + 1);
+
+    }
+
+    /**
+     *  中心扩散算法
+     *  1.从处理点中心index开始只要连续相等的都是回文子串，确定range，可以无视奇数和偶数lenght
+     *  2.从满足要求的left -1 和满足要求的right + 1对比扩大range 起始位置
+     * @param chars
+     * @param iIndex 其实就是iLeft
+     * @param leftRightRange 存放回文子串的起始index
+     * @return 下一个循环index
+     */
+    private int findLeftRightIndex(char[] chars, int iIndex, int[] leftRightRange){
+        int iRight = iIndex;
+        // 倒数第二个就够了
+        int max = chars.length - 1;
+        // step 1
+        while(iRight < max && chars[iIndex] == chars[iRight + 1]){
+            iRight++;
+        }
+
+        // 保存下一个循环处理的index
+        int result = iRight;
+
+        // step 2
+        while(iIndex > 0 && iRight < max && chars[iIndex  - 1] == chars[iRight + 1]){
+            iIndex--;
+            iRight++;
+        }
+
+        // 取最大长度的回文子串
+        if(iRight - iIndex > leftRightRange[1] - leftRightRange[0]){
+            leftRightRange[0] = iIndex;
+            leftRightRange[1] = iRight;
+        }
+
+        return result;
+    }
+
 }
