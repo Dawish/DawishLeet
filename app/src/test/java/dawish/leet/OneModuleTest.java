@@ -42,4 +42,15 @@ public class OneModuleTest {
         System.out.println("longestPalindrome: "+resultStr);
     }
 
+    @Test
+    public void addition_3() {
+        OneModule oneModule = new OneModule();
+//        String str = "LVIII";
+        String str = "MCMXCIV";
+//        String str = "IX";
+        System.out.println("string: "+str);
+        int resultStr = oneModule.romanToInt(str);
+        System.out.println("resultStr: "+resultStr);
+    }
+
 }

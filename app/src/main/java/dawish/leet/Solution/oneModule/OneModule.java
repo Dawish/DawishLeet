@@ -2,7 +2,9 @@ package dawish.leet.Solution.oneModule;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class OneModule {
 
@@ -181,5 +183,59 @@ public class OneModule {
 
         return result;
     }
+
+    /**
+     * 罗马数字转整数
+     */
+    public int romanToInt(String s) {
+        if(s == null || s.length() == 0){
+            return 0;
+        }
+        Map<Character, Integer> valueMap = new HashMap<>();
+        valueMap.put('I', 1);
+        valueMap.put('V', 5);
+        valueMap.put('X', 10);
+        valueMap.put('L', 50);
+        valueMap.put('C', 100);
+        valueMap.put('D', 500);
+        valueMap.put('M', 1000);
+
+        int allValue = 0;
+        char[] chars = s.toCharArray();
+        int length = chars.length;
+        int i = length - 1;
+
+        while(i >= 0){
+
+            char currChar = chars[i];
+            char leftChar;
+            int currValue = valueMap.get(currChar);
+            int leftValue = 0;
+
+            if(i - 1 >= 0) {
+                leftChar = chars[i - 1];
+                leftValue = valueMap.get(leftChar);
+
+                if (('V' == currChar || 'X' == currChar) && 'I' == leftChar) {
+                    currValue -= leftValue;
+                    i--;
+                }
+                if (('L' == currChar || 'C' == currChar) && 'X' == leftChar) {
+                    currValue -= leftValue;
+                    i--;
+                }
+                if (('D' == currChar || 'M' == currChar) && 'C' == leftChar) {
+                    currValue -= leftValue;
+                    i--;
+                }
+            }
+
+            allValue += currValue;
+
+            i--;
+        }
+        return allValue;
+    }
+
 
 }
