@@ -49,4 +49,30 @@ public class Solution {
         middleOrder(root.right);
     }
 
+
+    int num = 0;
+    // 搜索二叉树中序遍历可以得到一个升序数组 右中左可以得到一个降序的
+    /**
+     * 给定一个二叉搜索树（Binary Search Tree），把它转换成为累加树（Greater Tree)，
+     * 使得每个节点的值是原来的节点值加上所有大于它的节点值之和
+     * @param root
+     * @return
+     */
+    public TreeNode convertBST(TreeNode root) {
+        convertOrder(root);
+        return root;
+    }
+
+    public void convertOrder(TreeNode root){
+        if(root == null){
+            return;
+        }
+        convertOrder(root.right);
+        // 加上上一个大于自己的值
+        root.val += num;
+        // 保存上一个大于自己值
+        num = root.val;
+        convertOrder(root.left);
+    }
+
 }
