@@ -75,4 +75,29 @@ public class Solution {
         convertOrder(root.left);
     }
 
+    int sum;
+    /**
+     * 从根到叶的二进制数之和
+     * @param root
+     * @return
+     */
+    public int sumRootToLeaf(TreeNode root) {
+        orderTree(root, 0);
+        return sum;
+    }
+    // 先序遍历求和
+    public void orderTree(TreeNode root, int pathVal){
+        if(root == null){
+            return;
+        }
+        // 累加路径上的val值
+        pathVal = ((pathVal<<1) + root.val) % 1000000007;
+        // 遇到叶子节点求一次sum值
+        if(root.left == null && root.right == null){
+            sum += pathVal;
+        }
+        orderTree(root.left, pathVal);
+        orderTree(root.right, pathVal);
+    }
+
 }
