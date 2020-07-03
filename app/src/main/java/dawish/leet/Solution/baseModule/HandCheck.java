@@ -58,5 +58,40 @@ public class HandCheck {
         return -1;
     }
 
+    // 快速排序 时间复杂度O(nlogn)
+    public static int[] quickSort(int[] array, int left, int right){
+        if(left > right){
+            return array;
+        }
+        int i = left;
+        int j = right;
+        // 左边为基准值
+        int base = array[left];
+        // i和j没有指向同一个元素就继续交换
+        while(i != j){
+            while(base <= array[j] && i < j){
+                j--;
+            }
+            while(base >= array[i] && i < j){
+                i++;
+            }
+            // 两边找完了说明找到i和j需要交换的值了
+            int temp = array[i];
+            array[i] = array[j];
+            array[j] = temp;
+        }
+        // 到这一步说明一次递归完成，i和j指向了同一个位置，
+        // 把base值与此位置交换
+        array[left] = array[i];
+        array[i] = base;
+
+        // 对左边排序
+        quickSort(array, left, i-1);
+        // 对右边排序
+        quickSort(array, i+1, right);
+        return array;
+
+    }
+
 
 }
