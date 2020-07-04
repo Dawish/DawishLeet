@@ -27,8 +27,6 @@ public class HandCheck {
     }
 
 
-
-
     // 二分查找
     // 时间负责的 log(2n)
     public static int search(int key, int[] array){
