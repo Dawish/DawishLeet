@@ -38,7 +38,7 @@ public class Tree {
         deque.add(root);
 
         if(!deque.isEmpty()){
-            TreeNode treeNode = deque.removeFirst();
+            TreeNode treeNode = deque.remove();
             if(treeNode.left != null){
                 deque.add(treeNode.left);
             }
