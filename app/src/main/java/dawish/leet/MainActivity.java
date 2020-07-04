@@ -5,8 +5,10 @@ import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import dawish.leet.Solution.android.AsyncLayoutInflatePlus;
+import dawish.leet.Solution.baseModule.IntHandle;
 import dawish.leet.Solution.baseModule.Search;
 import dawish.leet.Solution.baseModule.Sort;
+import dawish.leet.Solution.baseModule.ArrayHandle;
 
 import android.content.res.Configuration;
 import android.os.Build;
@@ -15,9 +17,6 @@ import android.util.Log;
 import android.view.Choreographer;
 import android.view.View;
 import android.view.ViewGroup;
-
-import java.lang.ref.ReferenceQueue;
-import java.lang.ref.WeakReference;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
@@ -62,7 +61,6 @@ public class MainActivity extends AppCompatActivity {
 
                 Log.e(TAG, "binSearch rst:"+Search.binSearch(9, array));
 
-
                 int[] arr = { 11, 3, 29, 49, 30, 7, 50, 63, 46, 1, 99 };
                 int[] quickSort = Sort.quickSort(arr, 0, arr.length - 1);
                 int quickSortLength= quickSort.length;
@@ -70,7 +68,29 @@ public class MainActivity extends AppCompatActivity {
                 for(int  i=0; i <quickSortLength; i++){
                     stringBuffer.append(quickSort[i]).append("  ");
                 }
-                Log.e(TAG, "quickSort :"+stringBuffer.toString());
+
+                Log.e(TAG, stringBuffer.toString());
+
+
+                //Object[] srtings = { "ad", "bd", "aa", "vv", "aa", "xx" };
+                Object[] srtings = { 2, 4, 1, 6, 3, 8, 6 };
+                Object[] uniqueString = ArrayHandle.unique(srtings);
+                stringBuffer.setLength(0);
+                stringBuffer.append("StringHandle.unique:");
+                for(Object s : uniqueString){
+                    stringBuffer.append(s).append(" ");
+                }
+                Log.e(TAG, stringBuffer.toString());
+
+                Object[] uniqueString2 = ArrayHandle.unique2(srtings);
+                stringBuffer.setLength(0);
+                stringBuffer.append("StringHandle.unique2:");
+                for(Object s : uniqueString2){
+                    stringBuffer.append(s).append(" ");
+                }
+                Log.e(TAG, stringBuffer.toString());
+
+                Log.e(TAG, "one count:"+IntHandle.getOneCount(5));
 
             }
         });

@@ -16,8 +16,7 @@ public class Sort {
             int temp = arr[outer];
             inner = outer;
             // //前面的大就想后面移动
-            while (inner > 0 && arr[inner - 1] >= temp)
-            {
+            while (inner > 0 && arr[inner - 1] >= temp) {
                 arr[inner] = arr[inner - 1];
                 --inner;
             }
