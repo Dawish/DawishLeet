@@ -2,6 +2,7 @@ package dawish.leet.Solution.baseModule;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -49,5 +50,34 @@ public class ArrayHandle {
         set.addAll(Arrays.asList(strings2));
         return set.toArray();
     }
+
+    /**
+     * Java数组中找出两个相加等于某个值的数据下标
+     */
+    public static int[] findIndex(int target, int[] array){
+        int[] index = {0, 0};
+        if(array == null || array.length < 2){
+            return index;
+        }
+        HashMap<Integer, Integer> hashMap = new HashMap<Integer, Integer>();
+        int count = array.length;
+        for(int i=0; i<count; i++){
+            // 值为key， 坐标index为value
+            hashMap.put(array[i], i);
+        }
+
+        for(int j=0; j<count; j++){
+            // 计算当前数据与目标和的差值
+            int gap = target - array[j];
+            // 存在目标差值 且 找到的差值不是同一个数据
+            if(hashMap.containsKey(gap) && target != 2*gap){
+                index[0] = j;
+                index[1] = hashMap.get(gap);
+                break;
+            }
+        }
+        return index;
+    }
+
 
 }

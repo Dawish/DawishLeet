@@ -1,6 +1,6 @@
 package dawish.leet.Solution.baseModule;
 
-public class HandleLinked {
+public class LinkedHandle {
 
     /**
      * 链表反转

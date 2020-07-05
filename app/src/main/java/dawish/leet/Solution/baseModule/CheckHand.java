@@ -3,7 +3,7 @@ package dawish.leet.Solution.baseModule;
 /**
  * 手写算法检查
  */
-public class HandCheck {
+public class CheckHand {
 
     // 冒泡排序
     // 时间复杂度log(n^2)
