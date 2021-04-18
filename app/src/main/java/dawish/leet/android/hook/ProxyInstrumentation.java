@@ -41,7 +41,7 @@ public class ProxyInstrumentation extends Instrumentation {
 
         Log.d("ApplicationContextHook", "execStartActivity hook add log");
 
-        //这里还要执行系统的原本逻辑，但是突然发现，这个execStartActivity居然是hide的，只能反射咯
+        //这里还要执行系统的原本逻辑，execStartActivity是@hide的，只能反射
         try {
             Class<?> InstrumentationClz = Class.forName("android.app.Instrumentation");
             Method execStartActivity = InstrumentationClz.getDeclaredMethod("execStartActivity",
