@@ -1,4 +1,4 @@
-package dawish.leet.Solution.android;
+package dawish.leet.android;
 
 import android.content.Context;
 import android.os.Handler;

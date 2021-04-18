@@ -1,4 +1,4 @@
-package dawish.leet.Solution.android;
+package dawish.leet.android;
 
 public class MyUncaughtExceptionHandler implements Thread.UncaughtExceptionHandler {
 

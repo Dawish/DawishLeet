@@ -1,20 +1,25 @@
-package dawish.leet;
+package dawish.leet.ui;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
-import dawish.leet.Solution.android.AsyncLayoutInflatePlus;
+import dawish.leet.DLog;
+import dawish.leet.R;
+import dawish.leet.android.AsyncLayoutInflatePlus;
 import dawish.leet.Solution.baseModule.IntHandle;
 import dawish.leet.Solution.baseModule.Search;
 import dawish.leet.Solution.baseModule.Sort;
 import dawish.leet.Solution.baseModule.ArrayHandle;
 
+import android.content.ComponentName;
+import android.content.Intent;
+import android.content.ServiceConnection;
 import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.util.Log;
-import android.view.Choreographer;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -28,22 +33,15 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+        initPart1();
+        initPart2();
+    }
+
+    private void initPart1(){
         View view = findViewById(R.id.tv);
-        view.getWidth();
-        view.getHeight();
-
-
-
-        final long mLastFrameTime;
-        final int mFrameCount;
-        Choreographer.getInstance().postFrameCallback(new Choreographer.FrameCallback() {
-            @Override
-            public void doFrame(long frameTimeNanos) {
-            }
-        });
 
         final AsyncLayoutInflatePlus asyncLayoutInflatePlus = new AsyncLayoutInflatePlus(MainActivity.this);
-
 
         view.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -94,10 +92,36 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-
-
     }
 
+    protected ServiceConnection mConn = new ServiceConnection() {
+        @Override
+        public void onServiceConnected(ComponentName name, IBinder service) {
+            DLog.D(TAG, "onServiceConnected name:"+name.getClassName());
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName name) {
+
+        }
+    };
+
+    private void initPart2(){
+        findViewById(R.id.bind).setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                // 绑定一个不存在的Service
+                intent.setClassName(MainActivity.this, "com.dxx.test.NullService");
+                bindService(intent, mConn, BIND_AUTO_CREATE);
+                DLog.D(TAG, "bindService");
+
+                intent.setClass(MainActivity.this, HookActivity.class);
+                startActivity(intent);
+
+            }
+        });
+    }
 
     /**
      * 在manifast文件中配置config以后只会调用这个地方
