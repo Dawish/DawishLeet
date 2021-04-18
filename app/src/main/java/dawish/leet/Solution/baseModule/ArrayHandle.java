@@ -2,6 +2,8 @@ package dawish.leet.Solution.baseModule;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -79,5 +81,33 @@ public class ArrayHandle {
         return index;
     }
 
+    /**
+     * 找出数组中一个数字出现次数最多的数字
+     */
+    public int find(int[] array){
+        int maxNumber = 0;
+        if(array == null){
+            return 0;
+        }
+
+        HashMap<Integer, Integer> hashMap = new HashMap<>();
+
+        int count = array.length;
+        for(int i=0; i<count; i++){
+            if(hashMap.containsKey((array[i]))){
+                int tempCount = hashMap.get(array[i]);
+                hashMap.put(array[i], tempCount + 1);
+            }else{
+                hashMap.put(array[i], 1);
+            }
+        }
+
+        Collection<Integer> allCount = hashMap.values();
+        int maxCount = Collections.max(allCount);
+
+
+
+        return 0;
+    }
 
 }
