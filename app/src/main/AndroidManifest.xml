@@ -3,12 +3,12 @@
     package="dawish.leet">
 
     <application
+        android:name=".MyApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:name=".MyApplication"
         android:theme="@style/AppTheme">
         <activity android:name=".ui.MainActivity">
             <intent-filter>
@@ -18,7 +18,11 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".ui.HookActivity" />
+        <activity
+            android:name=".ui.HookActivity"
+            android:process=":hook"
+            android:documentLaunchMode="intoExisting"
+            android:excludeFromRecents="false"/>
 
     </application>
 
